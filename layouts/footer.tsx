@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t p-4">
+    <footer className="p-4">
       <div className="flex flex-col items-center justify-between gap-2 text-center md:flex-row md:text-start">
         <p className="text-sm">
           Developed by{" "}
@@ -16,8 +16,6 @@ export default function Footer() {
           </Link>
           .
         </p>
-
-        <hr className="w-1/4 md:hidden" />
 
         <p className="text-sm">© 2024. All rights reserved.</p>
       </div>
