@@ -37,14 +37,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <div
             className={cn(
-              "max-w-2xl min-w-0 mb-40 lg:mx-auto m-4",
-              "flex flex-col",
-              "md:p-0 p-2",
-              "border"
+              "max-w-2xl mx-auto min-h-screen",
+              "flex flex-col shrink-0",
+              "p-4"
             )}
           >
             <Header />
-            <main className={cn("flex-auto p-4 mt-8")}>{children}</main>
+            <main className={cn("flex-auto", "p-4 my-2")}>{children}</main>
             <Footer />
           </div>
         </ThemeProvider>

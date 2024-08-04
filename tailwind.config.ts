@@ -13,6 +13,13 @@ const config = {
       sans: ["var(--font-geist-sans)"],
       mono: ["var(--font-geist-mono)"],
     },
+    screens: {
+      xs: "390px",
+      sm: "435px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+    },
 
     container: {
       center: true,
@@ -62,6 +69,10 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        smooth:
+          "0px 2px 3px -1px rgba(0,0,0,0.1),0px 1px 0px 0px rgba(25,28,33,0.02),0px 0px 0px 1px rgba(25,28,33,0.08)",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -71,10 +82,18 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        reveal: {
+          "0%": {
+            opacity: "0",
+            filter: "brightness(1) blur(15px)",
+            scale: "1.0125",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        reveal: "reveal 0.7s ease-in-out",
       },
     },
   },

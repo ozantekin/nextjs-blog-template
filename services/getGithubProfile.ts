@@ -3,7 +3,7 @@
 import { unstable_cache as cache } from "next/cache";
 
 export const getGithubUser = cache(
-  async (): Promise<GithubUser | null> => {
+  async (): Promise<GithubUserProps | null> => {
     try {
       const response = await fetch(`https://api.github.com/users/ozantekin`);
       return await response.json();

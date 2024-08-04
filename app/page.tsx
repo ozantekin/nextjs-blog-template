@@ -1,8 +1,10 @@
 import { compareDesc, format, parseISO } from "date-fns";
-import { allPosts, Post } from "contentlayer/generated";
+import { allWritings, Writing } from "contentlayer/generated";
 import Link from "next/link";
+import { Links } from "@/configs/personal";
+import { Mdx } from "@/components/mdx";
 
-function PostCard(post: Post) {
+function PostCard(post: Writing) {
   return (
     <div className="mb-8">
       <h2 className="mb-1 text-xl">
@@ -16,24 +18,47 @@ function PostCard(post: Post) {
       <time dateTime={post.date} className="mb-2 block text-xs text-gray-600">
         {format(parseISO(post.date), "LLLL d, yyyy")}
       </time>
-      <div
-        className="text-sm [&>*]:mb-3 [&>*:last-child]:mb-0"
-        dangerouslySetInnerHTML={{ __html: post.body.html }}
-      />
+      <Mdx code={post.body.code} />
     </div>
   );
 }
 
 export default function Home() {
-  const posts = allPosts.sort((a, b) =>
+  const posts = allWritings.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
   );
 
   return (
-    <main className="py-4">
-      <h1 className="mb-8 text-2xl font-black">
-        Next.js + Contentlayer Example
-      </h1>
+    <main className="space-y-8">
+      <div className="space-y-4 text-pretty">
+        <div className="space-y-1 font-mono">
+          <h1 className="text-xl font-bold">About Ozan Tekin</h1>
+          <p className="font-medium">creating simplicity, crafting utility</p>
+        </div>
+
+        <div className="space-y-2">
+          <p>Hi 👋🏻</p>
+          <p>
+            I'm Ozan, a fe dev. My focus as an indie maker is on creating simple
+            and useful products. Seeing people use my products and finding them
+            helpful brings me great satisfaction.
+          </p>
+        </div>
+
+        <div className="space-x-4">
+          {Links.map(({ href, ...props }, idx) => (
+            <a
+              key={idx}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm after:content-['_↗']"
+              {...props}
+            />
+          ))}
+        </div>
+      </div>
+
       {posts.map((post, idx) => (
         <PostCard key={idx} {...post} />
       ))}

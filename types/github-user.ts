@@ -1,4 +1,4 @@
-interface GithubUser {
+interface GithubUserProps {
   avatar_url: string;
   bio: string | null;
   blog: string;
