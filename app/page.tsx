@@ -1,8 +1,6 @@
 import { compareDesc, format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 import Link from "next/link";
-import { Button } from "@/components/shadcn/button";
-import ThemeSwitcher from "@/components/custom/theme-switcher";
 
 function PostCard(post: Post) {
   return (
@@ -32,12 +30,10 @@ export default function Home() {
   );
 
   return (
-    <main className="mx-auto max-w-xl py-8">
-      <h1 className="mb-8 text-center text-2xl font-black">
+    <main className="py-4">
+      <h1 className="mb-8 text-2xl font-black">
         Next.js + Contentlayer Example
       </h1>
-      <Button>Hi</Button>
-      <ThemeSwitcher />
       {posts.map((post, idx) => (
         <PostCard key={idx} {...post} />
       ))}

@@ -1,49 +1,50 @@
 "use client";
 
-import { Button } from "../shadcn/button";
-import { ThemeOptions } from "@/config/layout";
-import { useIsMounted } from "@/hooks/useIsMounted";
-import { ThemeOptionProps } from "@/types/layout-props";
-import { cn } from "@/utils/cn";
+import { Button } from "@/components/shadcn/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/shadcn/dropdown-menu";
 import { useTheme } from "next-themes";
+import { Moon, Sun } from "@phosphor-icons/react";
 
-interface ThemeButtonProps {
-  option: ThemeOptionProps;
+interface DropdownItemProps {
+  option: "light" | "dark" | "system";
 }
 
-const ThemeButton = ({ option }: ThemeButtonProps) => {
-  const { theme, icon: Icon } = option;
-  const { theme: currentTheme, setTheme } = useTheme();
+const ThemeOptions: DropdownItemProps["option"][] = ["light", "dark", "system"];
+
+const DropdownItem = ({ option }: DropdownItemProps) => {
+  const { setTheme } = useTheme();
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={() => setTheme(theme)}
-      className={cn(
-        "w-8 h-full rounded-md hover:bg-transparent",
-        currentTheme === theme && "shadow-smooth",
-        currentTheme !== theme &&
-          "hover:bg-slate-50 dark:hover:bg-slate-950  transition-colors duration-300"
-      )}
-      aria-label={`Switch to ${theme} theme`}
-      title={theme}
+    <DropdownMenuItem
+      onClick={() => setTheme(option)}
+      className="capitalize"
+      aria-label={`Switch to ${option} theme`}
     >
-      <Icon size={18} className="mx-auto" />
-    </Button>
+      {option}
+    </DropdownMenuItem>
   );
 };
 
 export default function ThemeSwitcher() {
-  const mounted = useIsMounted();
-
-  if (!mounted) return null;
   return (
-    <div className="border h-9 p-1 rounded-lg inline-flex items-center justify-center shrink-0 gap-1">
-      <span className="sr-only">Select theme</span>
-      {ThemeOptions.map((option) => (
-        <ThemeButton key={option.theme} option={option} />
-      ))}
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon">
+          <span className="sr-only">Select theme</span>
+          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        {ThemeOptions.map((option) => (
+          <DropdownItem key={option} option={option} />
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
