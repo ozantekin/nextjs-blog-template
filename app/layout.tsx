@@ -5,6 +5,8 @@ import "../assets/styles/globals.css";
 import type { Metadata } from "next";
 import { cn } from "@/utils/cn";
 import { PropsWithChildren } from "react";
+import Footer from "@/layouts/footer";
+import Header from "@/layouts/header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,12 +17,15 @@ interface RootLayoutProps extends PropsWithChildren {}
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className={cn(GeistSans.className, GeistMono.variable)}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn(GeistSans.className, GeistMono.variable)}
+    >
+      <head />
       <body
         className={cn(
           "text-black bg-white dark:text-white dark:bg-[#111010]",
-          "max-w-2xl mb-40 lg:mx-auto mx-4 mt-8",
-          "flex flex-col md:flex-row",
           "scroll-smooth tracking-[.05em] antialiased font-sans"
         )}
       >
@@ -30,14 +35,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem
           disableTransitionOnChange
         >
-          <main
+          <div
             className={cn(
-              "flex-auto flex flex-col",
-              "min-w-0 mt-6 px-2 md:px-0"
+              "max-w-2xl min-w-0 mb-40 lg:mx-auto m-4",
+              "flex flex-col",
+              "md:p-0 p-2",
+              "border"
             )}
           >
-            {children}
-          </main>
+            <Header />
+            <main className={cn("flex-auto p-4 mt-8")}>{children}</main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
