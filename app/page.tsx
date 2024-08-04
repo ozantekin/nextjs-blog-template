@@ -1,7 +1,8 @@
 import { compareDesc, format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 import Link from "next/link";
-import { Button } from "@/components/shadcn/ui/button";
+import { Button } from "@/components/shadcn/button";
+import ThemeSwitcher from "@/components/custom/theme-switcher";
 
 function PostCard(post: Post) {
   return (
@@ -36,6 +37,7 @@ export default function Home() {
         Next.js + Contentlayer Example
       </h1>
       <Button>Hi</Button>
+      <ThemeSwitcher />
       {posts.map((post, idx) => (
         <PostCard key={idx} {...post} />
       ))}
