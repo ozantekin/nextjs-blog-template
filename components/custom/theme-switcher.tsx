@@ -29,7 +29,7 @@ const ThemeButton = ({ option }: ThemeButtonProps) => {
       aria-label={`Switch to ${theme} theme`}
       title={theme}
     >
-      <Icon size={18} className="mx-auto dark:text-white " />
+      <Icon size={18} className="mx-auto" />
     </Button>
   );
 };

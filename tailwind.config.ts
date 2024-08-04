@@ -8,6 +8,11 @@ const config = {
   ],
   prefix: "",
   theme: {
+    fontFamily: {
+      sans: ["var(--font-geist-sans)"],
+      mono: ["var(--font-geist-mono)"],
+    },
+
     container: {
       center: true,
       padding: "2rem",
