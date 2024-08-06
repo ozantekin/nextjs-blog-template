@@ -58,3 +58,13 @@
     --chart-5: 340 75% 55%;
   }
 }
+
+@layer components {
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

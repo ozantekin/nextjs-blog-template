@@ -18,7 +18,7 @@ function PostCard(post: Writing) {
       <time dateTime={post.date} className="mb-2 block text-xs text-gray-600">
         {format(parseISO(post.date), "LLLL d, yyyy")}
       </time>
-      <Mdx code={post.body.code} />
+      <p className="text-gray-700 dark:text-gray-300">{post.excerpt}</p>
     </div>
   );
 }
